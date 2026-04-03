@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2nd Anniversary! ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;700&display=swap');
+
+        :root {
+            --primary-pink: #ffb7b2;
+            --deep-rose: #ff4d6d;
+            --soft-cream: #fff0f3;
+            --dark-text: #5c3d44;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--soft-cream) 0%, #ffe5ec 100%);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Floating Hearts Background */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--deep-rose);
+            transform: rotate(-45deg);
+            opacity: 0.3;
+            animation: float 15s linear infinite;
+            bottom: -50px;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--deep-rose);
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: 10px; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-1000px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Countdown Timer */
+        .timer-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.1);
+            display: flex;
+            gap: 20px;
+            margin: 30px 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .time-box {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .time-box span {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--deep-rose);
+            display: block;
+        }
+
+        .time-box label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark-text);
+        }
+
+        /* Interactive Scratch-Off Card */
+        .card-section {
+            max-width: 500px;
+            width: 90%;
+            margin: 40px 20px;
+            text-align: center;
+        }
+
+        .scratch-container {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .secret-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            z-index: 1;
+        }
+
+        .secret-message h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+        }
+
+        .secret-message p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            touch-action: none; /* Prevents scrolling while scratching on mobile */
+        }
+
+        .instruction {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--deep-rose);
+            animation: pulse 2s infinite;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-hearts" id="hearts-container"></div>
+
+    <header>
+        <h1>Two Years Together</h1>
+        <div class="subtitle">And a lifetime to go</div>
+    </header>
+
+    <div class="timer-container">
+        <div class="time-box">
+            <span id="days">00</span>
+            <label>Days</label>
+        </div>
+        <div class="time-box">
+            <span id="hours">00</span>
+            <label>Hours</label>
+        </div>
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <label>Minutes</label>
+        </div>
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <label>Seconds</label>
+        </div>
+    </div>
+
+    <div class="card-section">
+        <p style="margin-bottom: 10px; font-weight: 500;">A little message for you:</p>
+        <div class="scratch-container" id="scratch-area">
+            <div class="secret-message">
+                <h3>I Love You!</h3>
+                <p>Happy 2nd Anniversary, my love! Thank you for the laughs, the growth, and for making my world so much brighter. Here's to us! 🥂✨</p>
+                <br>
+                <p>It feels like just yesterday we decided to start this beautiful journey together, yet at the same time, I can hardly remember what life was like before you. I also hardly think why you like me for real haha. Anyway, These past two years have been the most incredible, happiest years of my life, and I am so incredibly grateful for every single day I get to spend by your side. I'm not a perfect person. I've done things that can be ruin. But I wanna make up right now so that we will never broke up.</p>
+                <br>
+                <p>Two years down, and a lifetime to go. I love you more than words can ever truly express. Happy Anniversary! ❤️✨"</p>
+            </div>
+            <canvas id="scratch-canvas"></canvas>
+        </div>
+        <div class="instruction">👆 Scratch the canvas to reveal!</div>
+    </div>
+
+    <footer>
+        Made with ❤️ for my favorite person.
+    </footer>
+
+    <script>
+        // 1. Generate Random Floating Background Hearts
+        const heartsContainer = document.getElementById('hearts-container');
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 10 + 's';
+            heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            const size = Math.random() * 15 + 10;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            heartsContainer.appendChild(heart);
+        }
+
+        // 2. Countdown Timer Logic
+        // IMPORTANT: Change this date to the exact date you became GF/BF!
+        const anniversaryDate = new Date("April 3, 2024 00:00:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            // This calculates the difference since you started dating (counting UP)
+            const difference = now - anniversaryDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // 3. Scratch Card Effect
+        const canvas = document.getElementById('scratch-canvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('scratch-area');
+
+        // Set canvas size to match container
+        function resizeCanvas() {
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+            
+            // Fill with scratching cover
+            ctx.fillStyle = '#ffb7b2';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add some text on top of the scratch area
+            ctx.font = '20px Montserrat';
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Scratch here with your finger', canvas.width / 2, canvas.height / 2);
+        }
+        
+        window.onload = resizeCanvas;
+        window.onresize = resizeCanvas;
+
+        let isDrawing = false;
+
+        function scratch(e) {
+            if (!isDrawing) return;
+
+            // Get correct coordinates for both mouse and touch
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, Math.PI * 2, false);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseleave', () => isDrawing = false);
+
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+        canvas.addEventListener('touchmove', scratch);
+        canvas.addEventListener('touchend', () => isDrawing = false);
+    </script>
+</body>
+</html>
